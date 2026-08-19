@@ -23,9 +23,6 @@
   body{
     margin:0;
     min-height:100vh;
-    /* ============================================== */
-    /* AGREGADO: Color de respaldo para que no se vea blanco */
-    /* ============================================== */
     background-color: var(--blush); 
     background-image: url('iman2.png');
     background-size: cover;
@@ -43,9 +40,6 @@
   #gate{
     position:fixed; inset:0; z-index:100;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    /* ============================================== */
-    /* AGREGADO: Color de respaldo para que no se vea blanco */
-    /* ============================================== */
     background-color: var(--blush);
     background-image: url('152.png');
     background-size: cover;
@@ -226,7 +220,7 @@
     max-width:600px;
     box-shadow:0 20px 50px rgba(79,14,33,.10);
     background-image: url('IMA3.png');
-    background-color: var(--blush); /* Respaldo */
+    background-color: var(--blush);
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -449,6 +443,19 @@
     opacity: 0.9;
   }
 
+  /* ======================================================== */
+  /* NUEVO: Imagen de la chica flotante para móviles          */
+  /* ======================================================== */
+  .girl-mobile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 45%; /* Ajusta este porcentaje si la quieres más chica o más grande */
+    z-index: 10;
+    pointer-events: none; /* Para que no bloquee el botón si el usuario toca sin querer */
+    display: none;
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important;}
   }
@@ -465,13 +472,15 @@
     #guest-name-display{font-size: 1.4rem;}
   }
 
-  /* ====================================================== */
-  /* CORRECCIÓN PARA CELULARES: Mostrar a la chica del lado */
-  /* ====================================================== */
+  /* ======================================================== */
+  /* REGLA PARA EL CELULAR: Corona al medio y Chica en esquina */
+  /* ======================================================== */
   @media (max-width: 600px) {
     #gate {
-      /* Desplaza el fondo hacia la izquierda para que la chica se vea sin afectar el texto central */
-      background-position: 20% center; 
+      background-position: center center; /* La corona siempre al centro */
+    }
+    .girl-mobile {
+      display: block; /* Solo mostramos a la chica en el celular */
     }
   }
 </style>
@@ -493,6 +502,11 @@
   <div class="gate-sub">Fiorella Gayoso</div>
 
   <button id="enterBtn">Toca para abrir tu invitación</button>
+
+  <!-- ========================================================== -->
+  <!-- TU NUEVA IMAGEN: chica.png (con fondo transparente)         -->
+  <!-- ========================================================== -->
+  <img src="chica.png" class="girl-mobile" alt="Chica vestido rojo">
 </div>
 
 <canvas id="fx"></canvas>
@@ -824,7 +838,7 @@ function enviarWhatsApp(e) {
   const thankYou = document.getElementById('thankyou');
   
   btn.disabled = true;
-  btn.innerHTML = 'Confirmado';
+  btn.innerHTML = 'Confirmado ✅';
   btn.style.opacity = '0.6';
   btn.style.cursor = 'default';
   thankYou.style.display = 'block';
