@@ -1,0 +1,37 @@
+INVITACIÓN WEB — MIS XV AÑOS DE FIORELLA
+==========================================
+
+CÓMO USARLA
+1. Descomprimí el zip.
+2. Abrí "index.html" haciendo doble clic (funciona sin internet, salvo por
+   las tipografías, que se cargan de Google Fonts si hay conexión).
+3. Para compartirla por WhatsApp, subí la carpeta a un hosting gratuito
+   como Netlify Drop (netlify.com/drop), Vercel o GitHub Pages, y compartí
+   el link que te den.
+
+LA MÚSICA
+La invitación reproduce una melodía suave tipo caja de música apenas se
+toca el botón "Toca para abrir tu invitación". Fue generada con código
+(no es un archivo mp3), así evitamos cualquier problema de derechos de
+autor. Si preferís usar una canción real:
+  1. Colocá tu archivo de audio (mp3) dentro de esta misma carpeta,
+     por ejemplo "musica.mp3".
+  2. En index.html, dentro de <body>, agregá antes del cierre </body>:
+       <audio id="miMusica" src="musica.mp3" loop></audio>
+  3. En la función startMusic() del script, reemplazá el contenido por:
+       document.getElementById('miMusica').play();
+  (Asegurate de tener los derechos para usar esa canción.)
+
+PARA PERSONALIZAR
+- Número de WhatsApp: buscá "wa.me/595900000000" en index.html y
+  reemplazalo por el número real (formato: código de país + número,
+  sin espacios ni el símbolo +).
+- Ubicación en el mapa: buscá "MP+Eventos" en el enlace de Google Maps
+  y poné la dirección exacta del salón.
+- Fecha/hora del conteo regresivo: buscá la línea
+       const target = new Date('2026-09-05T20:00:00');
+  y ajustá el año si hace falta.
+- Colores, textos y tamaños: todo está comentado por secciones dentro
+  de las etiquetas <style> y <section> del archivo index.html.
+
+¡Felices XV, Fiorella! 🎀
