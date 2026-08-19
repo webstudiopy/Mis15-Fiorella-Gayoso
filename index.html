@@ -23,7 +23,15 @@
   body{
     margin:0;
     min-height:100vh;
-    background: url('iman2.png') center/cover no-repeat fixed;
+    /* ============================================== */
+    /* AGREGADO: Color de respaldo para que no se vea blanco */
+    /* ============================================== */
+    background-color: var(--blush); 
+    background-image: url('iman2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family:'Cormorant Garamond', serif;
     color:var(--ink);
     overflow-x:hidden;
@@ -35,7 +43,14 @@
   #gate{
     position:fixed; inset:0; z-index:100;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background: url('152.png') center/cover no-repeat; 
+    /* ============================================== */
+    /* AGREGADO: Color de respaldo para que no se vea blanco */
+    /* ============================================== */
+    background-color: var(--blush);
+    background-image: url('152.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align:center;
     transition:opacity 1s ease, visibility 1s ease;
     padding:24px;
@@ -167,7 +182,6 @@
   /* countdown */
   #countdown{padding-top:10px; padding-bottom:10px;}
   
-  /* "Faltan" MÁS GRANDE Y VISIBLE */
   .cd-label{
     font-family:'Marcellus', serif;
     letter-spacing:.2em; 
@@ -212,6 +226,7 @@
     max-width:600px;
     box-shadow:0 20px 50px rgba(79,14,33,.10);
     background-image: url('IMA3.png');
+    background-color: var(--blush); /* Respaldo */
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -287,7 +302,7 @@
     box-shadow: 0 8px 16px rgba(79,14,33,0.35);
   }
 
-  /* ---------- RSVP SECTION (CONFIRMÁ TU ASISTENCIA EN ARIAL) ---------- */
+  /* ---------- RSVP SECTION ---------- */
   #rsvp{padding-top:20px;}
   
   .rsvp-container{
@@ -301,12 +316,9 @@
     position: relative;
   }
 
-  /* ================================================= */
-  /* ¡CORREGIDO! Título y texto en FUENTE ARIAL        */
-  /* ================================================= */
   .rsvp-title{
-    font-family: 'Arial', sans-serif !important; /* Cambiado a Arial */
-    font-size:3.1rem;
+    font-family: 'Arial', sans-serif !important;
+    font-size:3.2rem;
     color:var(--wine-deep);
     margin-bottom:8px;
     line-height: 1.1;
@@ -315,7 +327,7 @@
   .rsvp-text{
     max-width: 100%;
     margin: 0 auto 28px;
-    font-family: 'Arial', sans-serif !important; /* Cambiado a Arial */
+    font-family: 'Arial', sans-serif !important;
     font-size: 1.25rem;
     line-height: 1.6;
     color: #3d0e1c;
@@ -408,9 +420,7 @@
     margin-top:6px;
   }
 
-  /* ================================================ */
-  /* MENSAJE PERSONALIZADO - FUENTE ARIAL             */
-  /* ================================================ */
+  /* MENSAJE PERSONALIZADO - FUENTE ARIAL */
   #personalized-greeting {
     display: none;
     margin: 10px auto 20px;
@@ -423,7 +433,7 @@
     box-shadow: 0 4px 12px rgba(79,14,33,0.05);
   }
   #guest-name-display {
-    font-family: 'Arial', sans-serif !important; /* Arial forzado */
+    font-family: 'Arial', sans-serif !important;
     font-size: 1.8rem;
     color: var(--wine);
     letter-spacing: 1px;
@@ -431,7 +441,7 @@
     line-height: 1.3;
   }
   #guest-capacity-display {
-    font-family: 'Arial', sans-serif !important; /* Arial forzado */
+    font-family: 'Arial', sans-serif !important;
     font-size: 1.1rem;
     color: var(--wine-deep);
     letter-spacing: 0.5px;
@@ -453,6 +463,16 @@
     .rsvp-title{font-size: 2.8rem;}
     .rsvp-container{padding: 30px 20px;}
     #guest-name-display{font-size: 1.4rem;}
+  }
+
+  /* ====================================================== */
+  /* CORRECCIÓN PARA CELULARES: Mostrar a la chica del lado */
+  /* ====================================================== */
+  @media (max-width: 600px) {
+    #gate {
+      /* Desplaza el fondo hacia la izquierda para que la chica se vea sin afectar el texto central */
+      background-position: 20% center; 
+    }
   }
 </style>
 </head>
@@ -481,7 +501,6 @@
   <svg id="soundIcon" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
 </div>
 
-<!-- REPRODUCTOR DE AUDIO OCULTO (MP3) -->
 <audio id="bgMusic" src="lyrium-2025-ki-instrumental-classic-waltz-341393.mp3" loop preload="auto"></audio>
 
 <main>
@@ -499,7 +518,6 @@
     <p class="lead date-lead">05 |09| 2026</p>
     <p class="lead invite-lead">¡NO FALTES!</p>
 
-    <!-- MENSAJE PERSONALIZADO DEL INVITADO (FUENTE ARIAL) -->
     <div id="personalized-greeting">
       <p id="guest-name-display"></p>
       <p id="guest-capacity-display"></p>
@@ -546,9 +564,8 @@
 
   <section id="rsvp">
     <div class="rsvp-container">
-      <!-- ¡CORREGIDO! Ahora es Arial -->
       <div class="rsvp-title">Confirmá tu asistencia</div>
-      <p class="rsvp-text">Tu presencia hará de este día algo aún más especial.</p>
+      <p class="rsvp-text">Tu presencia hará de este día algo aún más especial.<br>Por favor confirmá antes del 25 de agosto.</p>
       
       <form id="rsvpForm" class="rsvp-form" onsubmit="enviarWhatsApp(event)">
         <input type="text" id="nombre" class="rsvp-input" placeholder="Tu nombre y apellido" required>
@@ -754,7 +771,7 @@ setInterval(updateCountdown, 1000);
 
 document.body.style.overflow = 'hidden';
 
-/* ===================== CARGA DE DATOS PERSONALIZADOS (ACTUALIZADO CON ARIAL) ===================== */
+/* ===================== CARGA DE DATOS PERSONALIZADOS ===================== */
 const params = new URLSearchParams(window.location.search);
 const guestName = params.get('nombre');
 const maxPersonas = params.get('personas');
@@ -766,17 +783,14 @@ if (guestName) {
 
     greetDiv.style.display = 'block';
     
-    // Texto personalizado
     nameDisplay.innerHTML = `¡Hola! Te invito a festejar mis XV conmigo, <strong>${decodeURIComponent(guestName)}</strong>!`;
 
-    // Cantidad de personas
     if (maxPersonas) {
         capDisplay.innerHTML = `(Válido para ${maxPersonas} personas)`;
     } else {
         capDisplay.innerHTML = `(Válido para 1 persona)`;
     }
 
-    // Auto-rellenar el nombre y bloquear edición
     const nombreInput = document.getElementById('nombre');
     if (nombreInput) {
         nombreInput.value = decodeURIComponent(guestName);
@@ -810,7 +824,7 @@ function enviarWhatsApp(e) {
   const thankYou = document.getElementById('thankyou');
   
   btn.disabled = true;
-  btn.innerHTML = 'Confirmado ✅';
+  btn.innerHTML = 'Confirmado';
   btn.style.opacity = '0.6';
   btn.style.cursor = 'default';
   thankYou.style.display = 'block';
