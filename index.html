@@ -491,24 +491,27 @@
       margin-bottom: 10px;
     }
     
+    /* ========================================================== */
+    /* CHICA MÁS GRANDE: De 25% sube a 35%                        */
+    /* ========================================================== */
     .girl-mobile {
       display: block;
-      width: 25%; /* ¡Reducida a 25% para que no llegue al botón! */
+      width: 35%; /* ¡Aumentada para que se vea más imponente! */
       bottom: 0;
       left: 0;
       z-index: 11;
     }
 
     /* ========================================================== */
-    /* CORRECCIÓN: Moños estirados a los bordes y sin tapar texto */
+    /* MOÑOS EN BORDE: Cambiado 'fill' por 'contain'              */
     /* ========================================================== */
     .lazos-mobile {
       display: block !important;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: fill; /* ¡Esto estira la imagen a los bordes exactos sin recortar! */
-      z-index: -1;      /* ¡Esto los manda detrás de todas las letras! */
+      object-fit: contain; /* Esto respeta la forma de los moños sin deformarlos al centro */
+      z-index: -1;         /* Esto los manda detrás de todas las letras */
     }
   }
 </style>
