@@ -499,14 +499,16 @@
       z-index: 11;
     }
 
-    /* Mostramos los lazos enteros para que no se recorten */
+    /* ========================================================== */
+    /* CORRECCIÓN: Moños estirados a los bordes y sin tapar texto */
+    /* ========================================================== */
     .lazos-mobile {
-      display: block;
+      display: block !important;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      z-index: 5;
+      object-fit: fill; /* ¡Esto estira la imagen a los bordes exactos sin recortar! */
+      z-index: -1;      /* ¡Esto los manda detrás de todas las letras! */
     }
   }
 </style>
@@ -527,8 +529,7 @@
   <h1 class="gate-title">Mis XV años</h1>
   <div class="gate-sub">Fiorella Gayoso</div>
 
-  <!-- NUEVOS: Imágenes flotantes para el celular -->
-  <!-- CORREGIDO: Ahora usa el nombre real de tu archivo "monitos.png" -->
+  <!-- IMAGEN DE MOÑOS (PRIMERA PANTALLA) -->
   <img src="monitos.png" class="lazos-mobile" alt="Lazos decorativos">
   <img src="chica.png" class="girl-mobile" alt="Chica vestido rojo">
 
@@ -562,6 +563,9 @@
       <p id="guest-name-display"></p>
       <p id="guest-capacity-display"></p>
     </div>
+
+    <!-- IMAGEN DE MOÑOS (SEGUNDA PANTALLA - AGREGADA) -->
+    <img src="monitos.png" class="lazos-mobile" alt="Lazos decorativos">
   </section>
 
   <section id="countdown">
