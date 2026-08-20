@@ -81,6 +81,7 @@
     cursor:pointer;
     box-shadow:0 10px 24px rgba(79,14,33,.35);
     transition:transform .25s ease, box-shadow .25s ease;
+    margin-top: 20px; /* Aumentado para empujar el botón hacia arriba */
   }
   #enterBtn:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 14px 30px rgba(79,14,33,.42);}
   #enterBtn:active{transform:translateY(0) scale(.98);}
@@ -444,16 +445,13 @@
   }
 
   /* ======================================================== */
-  /* NUEVO: Imagen de la chica flotante para móviles          */
+  /* NUEVOS: Imágenes flotantes para el celular               */
   /* ======================================================== */
-  .girl-mobile {
+  .girl-mobile, .lazos-mobile {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 45%; /* Ajusta este porcentaje si la quieres más chica o más grande */
     z-index: 10;
-    pointer-events: none; /* Para que no bloquee el botón si el usuario toca sin querer */
     display: none;
+    pointer-events: none;
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -473,14 +471,42 @@
   }
 
   /* ======================================================== */
-  /* REGLA PARA EL CELULAR: Corona al medio y Chica en esquina */
+  /* REGLA PARA EL CELULAR: Corona al medio + Chica + Moños   */
   /* ======================================================== */
   @media (max-width: 600px) {
     #gate {
       background-position: center center; /* La corona siempre al centro */
     }
+    
+    /* =================================================== */
+    /* CORRECCIÓN: Aleja el texto "SÁBADO" de la corona    */
+    /* =================================================== */
+    #hero {
+      padding-top: 140px; /* Aumentado para que la palabra SÁBADO no choque con la corona */
+    }
+
+    /* Ajustamos el botón para que quede más arriba y no choque con la chica */
+    #enterBtn {
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    
     .girl-mobile {
-      display: block; /* Solo mostramos a la chica en el celular */
+      display: block;
+      width: 25%; /* ¡Reducida a 25% para que no llegue al botón! */
+      bottom: 0;
+      left: 0;
+      z-index: 11;
+    }
+
+    /* Mostramos los lazos enteros para que no se recorten */
+    .lazos-mobile {
+      display: block;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 5;
     }
   }
 </style>
@@ -501,12 +527,11 @@
   <h1 class="gate-title">Mis XV años</h1>
   <div class="gate-sub">Fiorella Gayoso</div>
 
-  <button id="enterBtn">Toca para abrir tu invitación</button>
-
-  <!-- ========================================================== -->
-  <!-- TU NUEVA IMAGEN: chica.png (con fondo transparente)         -->
-  <!-- ========================================================== -->
+  <!-- NUEVOS: Imágenes flotantes para el celular -->
+  <img src="lazos.png" class="lazos-mobile" alt="Lazos decorativos">
   <img src="chica.png" class="girl-mobile" alt="Chica vestido rojo">
+
+  <button id="enterBtn">Toca para abrir tu invitación</button>
 </div>
 
 <canvas id="fx"></canvas>
@@ -579,7 +604,7 @@
   <section id="rsvp">
     <div class="rsvp-container">
       <div class="rsvp-title">Confirmá tu asistencia</div>
-      <p class="rsvp-text">Tu presencia hará de este día algo aún más especial.<br>Por favor confirmá antes del 25 de agosto.</p>
+      <p class="rsvp-text">Tu presencia hará de este día algo aún más especial.</p>
       
       <form id="rsvpForm" class="rsvp-form" onsubmit="enviarWhatsApp(event)">
         <input type="text" id="nombre" class="rsvp-input" placeholder="Tu nombre y apellido" required>
@@ -838,7 +863,7 @@ function enviarWhatsApp(e) {
   const thankYou = document.getElementById('thankyou');
   
   btn.disabled = true;
-  btn.innerHTML = 'Confirmado ✅';
+  btn.innerHTML = 'Confirmado';
   btn.style.opacity = '0.6';
   btn.style.cursor = 'default';
   thankYou.style.display = 'block';
