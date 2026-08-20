@@ -81,7 +81,7 @@
     cursor:pointer;
     box-shadow:0 10px 24px rgba(79,14,33,.35);
     transition:transform .25s ease, box-shadow .25s ease;
-    margin-top: 20px; /* Aumentado para empujar el botón hacia arriba */
+    margin-top: 20px;
   }
   #enterBtn:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 14px 30px rgba(79,14,33,.42);}
   #enterBtn:active{transform:translateY(0) scale(.98);}
@@ -210,6 +210,50 @@
     text-transform:uppercase;
     color:var(--ink);
     opacity:.6;
+  }
+
+  /* ======================================================= */
+  /* NUEVO: TEXTO DESLIZANTE "Te espero"                     */
+  /* ======================================================= */
+  #text-scroll{
+    overflow:hidden;
+    padding: 20px 0;
+    margin: 0 auto 10px;
+    max-width:100%;
+    position:relative;
+  }
+  #text-scroll::before,
+  #text-scroll::after{
+    content:'';
+    position:absolute;
+    top:0; bottom:0;
+    width:60px;
+    z-index:2;
+    pointer-events:none;
+  }
+  #text-scroll::before{ left:0; background:linear-gradient(90deg, var(--blush), transparent); }
+  #text-scroll::after{ right:0; background:linear-gradient(270deg, var(--blush), transparent); }
+
+  .text-track{
+    display:flex;
+    align-items:center;
+    gap: 60px;
+    width:max-content;
+    animation:scrollText 18s linear infinite;
+  }
+  .text-track span{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: var(--wine);
+    opacity: 0.9;
+    letter-spacing: 2px;
+  }
+  @keyframes scrollText{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .text-track{ animation:none; }
   }
 
   /* ---------- DETAILS SECTION ---------- */
@@ -479,10 +523,10 @@
     }
     
     /* =================================================== */
-    /* CORRECCIÓN: Aleja el texto "SÁBADO" de la corona    */
+    /* CORRECCIÓN FINAL: Más espacio entre corona y texto  */
     /* =================================================== */
     #hero {
-      padding-top: 140px; /* Aumentado para que la palabra SÁBADO no choque con la corona */
+      padding-top: 190px; /* ¡Aumentado de 140px a 190px para más separación! */
     }
 
     /* Ajustamos el botón para que quede más arriba y no choque con la chica */
@@ -503,22 +547,24 @@
     }
 
     /* ========================================================== */
-    /* MOÑOS EN BORDE: Cambiado 'fill' por 'contain'              */
+    /* MOÑOS ESTIRADOS Y REPETIDOS EN AMBAS PANTALLAS             */
     /* ========================================================== */
     .lazos-mobile {
       display: block !important;
-      inset: 0;
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Esto respeta la forma de los moños sin deformarlos al centro */
-      z-index: -1;         /* Esto los manda detrás de todas las letras */
+      object-fit: cover; /* Estira los moños hasta los bordes exactos sin dejar espacios */
+      z-index: -1;      /* Mete los moños DEBAJO de todo el texto y botones */
+      pointer-events: none;
     }
   }
 </style>
 </head>
 <body>
 
-<!-- ================= ENTRY GATE ================= -->
+<!-- ================= ENTRY GATE (1ra PANTALLA) ================= -->
 <div id="gate">
   <p class="invite-text" style="font-size: 4rem; margin: 8px 0 4px 0; text-shadow: 0 2px 8px rgba(255,248,244,0.6);">Te invito a celebrar</p>
   <svg class="gate-bow" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
@@ -532,7 +578,7 @@
   <h1 class="gate-title">Mis XV años</h1>
   <div class="gate-sub">Fiorella Gayoso</div>
 
-  <!-- IMAGEN DE MOÑOS (PRIMERA PANTALLA) -->
+  <!-- IMAGEN DE MOÑOS (REPETIDOS EN LA 1ra PANTALLA - CANDADO) -->
   <img src="monitos.png" class="lazos-mobile" alt="Lazos decorativos">
   <img src="chica.png" class="girl-mobile" alt="Chica vestido rojo">
 
@@ -567,7 +613,7 @@
       <p id="guest-capacity-display"></p>
     </div>
 
-    <!-- IMAGEN DE MOÑOS (SEGUNDA PANTALLA - AGREGADA) -->
+    <!-- IMAGEN DE MOÑOS (REPETIDOS EN LA 2da PANTALLA - CONTENIDO) -->
     <img src="monitos.png" class="lazos-mobile" alt="Lazos decorativos">
   </section>
 
@@ -580,6 +626,28 @@
       <div class="cd-cell"><span class="cd-num" id="cd-s">00</span><span class="cd-unit">seg</span></div>
     </div>
   </section>
+
+  <!-- ====================================================== -->
+  <!-- NUEVO: TEXTO DESLIZANTE "Te espero"                    -->
+  <!-- ====================================================== -->
+  <div id="text-scroll">
+    <div class="text-track">
+      <!-- Bloque 1 -->
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <!-- Bloque 2 (Duplicado exacto para loop infinito sin cortes) -->
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+      <span>Te espero</span>
+    </div>
+  </div>
 
   <section id="details">
     <div class="detail-title">Detalles</div>
