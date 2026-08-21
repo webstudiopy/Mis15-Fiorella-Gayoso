@@ -213,6 +213,41 @@
   }
 
   /* ======================================================= */
+  /* NUEVO: FLECHA PARA DESLIZAR (ACTUALIZADA)               */
+  /* ======================================================= */
+  .scroll-down-arrow {
+    text-align: center;
+    margin: 10px auto 20px;
+    cursor: pointer;
+    animation: bounce 1.6s infinite;
+  }
+
+  .scroll-down-arrow span {
+    display: block;
+    font-family: 'Marcellus', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--wine-deep);
+    margin-bottom: 6px;
+  }
+
+  .scroll-down-arrow svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--wine);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  /* ======================================================= */
   /* NUEVO: TEXTO DESLIZANTE "Te espero"                     */
   /* ======================================================= */
   #text-scroll{
@@ -725,6 +760,16 @@
     <img src="monitos.png" class="lazos-mobile" alt="Lazos decorativos">
   </section>
 
+  <!-- ================================================== -->
+  <!-- FLECHA PARA DESLIZAR (ACTUALIZADA)                 -->
+  <!-- ================================================== -->
+  <div class="scroll-down-arrow" id="scrollDownArrow">
+    <span>Desliza para ver más</span>
+    <svg viewBox="0 0 24 24">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </div>
+
   <section id="countdown">
     <div class="cd-label">Faltan</div>
     <div class="cd-grid">
@@ -766,15 +811,13 @@
     <div class="carousel-wrap">
       <div class="carousel">
         <div class="carousel-track" id="galeriaTrack">
-          <div class="slide"><img src="IMG-20260820-WA0083.jpg" alt="Foto 0"></div>
           <div class="slide"><img src="IMG-20260820-WA0070.jpg" alt="Foto 1"></div>
           <div class="slide"><img src="IMG-20260820-WA0072.jpg" alt="Foto 2"></div>
           <div class="slide"><img src="IMG-20260820-WA0074.jpg" alt="Foto 3"></div>
           <div class="slide"><img src="IMG-20260820-WA0075.jpg" alt="Foto 4"></div>
           <div class="slide"><img src="IMG-20260820-WA0077.jpg" alt="Foto 5"></div>
           <div class="slide"><img src="IMG-20260820-WA0079.jpg" alt="Foto 6"></div>
-          <div class="slide"><img src="IMG-20260820-WA0078.jpg" alt="Foto 8"></div>
-          <div class="slide"><img src="IMG-20260820-WA0076.jpg" alt="Foto 8"></div>
+          <div class="slide"><img src="IMG-20260820-WA0083.jpg" alt="Foto 7"></div>
         </div>
         <button class="carousel-arrow prev" id="galeriaPrev">
           <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#215e78" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1022,6 +1065,11 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+/* ===================== FLECHA PARA DESLIZAR ===================== */
+document.getElementById('scrollDownArrow').addEventListener('click', function() {
+  document.getElementById('countdown').scrollIntoView({ behavior: 'smooth' });
+});
+
 document.body.style.overflow = 'hidden';
 
 /* ===================== CARGA DE DATOS PERSONALIZADOS ===================== */
@@ -1167,7 +1215,7 @@ function enviarWhatsApp(e) {
                   `Nombre: ${nombre}\n` +
                   `Asistencia: ${asistencia}`;
 
-  const numeroWhatsApp = '595983509953'; 
+  const numeroWhatsApp = '595900000000'; // ¡CAMBIAR AQUÍ TU NÚMERO!
   const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
   
   window.open(url, '_blank');
